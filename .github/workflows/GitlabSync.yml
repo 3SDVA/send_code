@@ -1,10 +1,7 @@
 name: GitlabSync
 
-on:
-  - push
-  - delete
+on: [push]
  
-
 jobs:
   sync:
     name: Git Repo Sync
