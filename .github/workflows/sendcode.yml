@@ -1,0 +1,26 @@
+name: GitlabSync
+
+on:
+  - push
+  - delete
+ 
+
+jobs:
+  sync:
+    name: Git Repo Sync
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      name: checkout code
+      with:
+        fetch-depth: 0
+    - uses: github/git-repo-sync@v3
+      name: push the code
+      
+      with:
+        # Such as https://github.com/wangchucheng/g
+        target-url: ${{ secrets.TARGET_URL }}
+        # Such as wangchucheng
+        target-username: ${{ secrets.TARGET_USERNAME }}
+          # You can store token in your project's 'Setting > Secrets' and reference the name here. Such as ${{ secrets.ACCESS\_TOKEN }}
+        target-token: ${{ secrets.TARGET_TOKEN }}
